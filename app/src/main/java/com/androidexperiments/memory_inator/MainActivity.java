@@ -15,11 +15,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         tvDisplayMoves = findViewById(R.id.tvShowMoves);
         tvDisplayPairs = findViewById(R.id.tvShowPairs);
         rvImageSpace = findViewById(R.id.rvImagesSpace);
+
 
     }
 }
