@@ -12,6 +12,6 @@
         android:layout_height="140dp"
         android:layout_gravity="center"
 
-        app:srcCompat="@drawable/default_image" />
+         />
 
 </FrameLayout>
