@@ -16,10 +16,10 @@ import java.util.List;
 
 public class gridIconAdapter  extends RecyclerView.Adapter<gridIconAdapter.ViewHolder>{
    // public  List<memory> mIcons;
-    public Integer[] test_list;
+    public List<Integer> images;
 
     private static final int margin = 10;
-    public sizeBoard boardObject = new sizeBoard("HARD");
+    public sizeBoard boardObject = new sizeBoard("EASY");
     public int numOfItems;
 
     //get reference for all the views it will hold in here
@@ -27,8 +27,8 @@ public class gridIconAdapter  extends RecyclerView.Adapter<gridIconAdapter.ViewH
     //mIcons.add(R.drawable.default_image);
 
 
-    public gridIconAdapter(Context context,Integer num_items, Integer[] test_list){
-        this.test_list = test_list;
+    public gridIconAdapter(Context context,Integer num_items, List<Integer> images){
+        this.images = images;
         this.numOfItems = num_items;
     }
 
@@ -69,7 +69,8 @@ public class gridIconAdapter  extends RecyclerView.Adapter<gridIconAdapter.ViewH
             //memory current_item = mIcons.get(position);
 
             ImageView current_image = holder.ivIcons;
-            current_image.setImageResource(test_list[0]);
+
+            current_image.setImageResource(images.get(position));
             Log.i("haha", "worked");
             current_image.setOnClickListener(new View.OnClickListener() {
                 @Override

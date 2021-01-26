@@ -1,6 +1,7 @@
 package com.androidexperiments.memory_inator;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -10,6 +11,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -17,9 +20,12 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvDisplayPairs;
     private TextView tvDisplayMoves;
     private RecyclerView rvImageSpace;
-    private List<memory> mIcons;
-    private Integer[] test_list;
-    private sizeBoard boardObject = new sizeBoard("HARD");
+    private List<Integer> temp = icons.setIcons();
+
+    //mIcons.allIcons
+    private List<Integer> chosen;
+    private sizeBoard boardObject = new sizeBoard("EASY");
+    private List<Integer> randomizedImages ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +36,24 @@ public class MainActivity extends AppCompatActivity {
         tvDisplayMoves = findViewById(R.id.tvShowMoves);
         tvDisplayPairs = findViewById(R.id.tvShowPairs);
         rvImageSpace = findViewById(R.id.rvImagesSpace);
-        test_list= new Integer[] { R.drawable.default_image};
+
+        Log.i("TAG", String.valueOf(temp.size()));
+        //randomize all icons
+        Collections.shuffle(temp);
+        //take a set from that random list
+
+        chosen = temp.subList(0, boardObject.getNumberOfPairs());
+        //make a copy of random list
+        randomizedImages = new ArrayList<>(chosen);
+        //add copy and random list to one list
+        randomizedImages.addAll(chosen);
+        //randomize new version of list
+        Collections.shuffle(randomizedImages);
+        //pass in new list
+        Log.i("TAG", String.valueOf(randomizedImages));
+
         //create adapter for rv
-        gridIconAdapter imageAdapter = new gridIconAdapter(this, boardObject.getNumberOfCards(), test_list);
+        gridIconAdapter imageAdapter = new gridIconAdapter(this, boardObject.getNumberOfCards(), randomizedImages);
 
 
 

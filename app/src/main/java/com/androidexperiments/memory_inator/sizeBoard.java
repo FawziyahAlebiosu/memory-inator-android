@@ -21,7 +21,7 @@ public class sizeBoard {
         else if(gameMode.equals("HARD")){
             numberOfCards = HARD;
         }
-        setKWidth();
+        setWidth();
     }
     public int getNumberOfCards(){
         return numberOfCards;
