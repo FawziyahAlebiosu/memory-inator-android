@@ -15,10 +15,12 @@ import java.util.List;
 //populate it into the rv using adapters
 
 public class gridIconAdapter  extends RecyclerView.Adapter<gridIconAdapter.ViewHolder>{
-    public  List<memory> mIcons;
+   // public  List<memory> mIcons;
     public Integer[] test_list;
-    public Integer num_items;
+
     private static final int margin = 10;
+    public sizeBoard boardObject = new sizeBoard("HARD");
+    public int numOfItems;
 
     //get reference for all the views it will hold in here
 
@@ -27,24 +29,22 @@ public class gridIconAdapter  extends RecyclerView.Adapter<gridIconAdapter.ViewH
 
     public gridIconAdapter(Context context,Integer num_items, Integer[] test_list){
         this.test_list = test_list;
-        this.num_items = num_items;
+        this.numOfItems = num_items;
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         public ImageView ivIcons;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivIcons = itemView.findViewById(R.id.ivGridIcons);
-
-
-
         }
     }
 
     @NonNull
     @Override
     public gridIconAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        int widthCard = parent.getWidth()/2 - (2* margin);
-        int heightCard = parent.getHeight()/4 -(2* margin);
+        int widthCard = parent.getWidth()/boardObject.getWidth() - (2* margin);
+        int heightCard = parent.getHeight()/boardObject.getHeight() -(2* margin);
         int cardLength = Math.min(widthCard, heightCard);
 
 
@@ -84,6 +84,6 @@ public class gridIconAdapter  extends RecyclerView.Adapter<gridIconAdapter.ViewH
 
     @Override
     public int getItemCount() {
-        return num_items;
+        return numOfItems;
     }
 }

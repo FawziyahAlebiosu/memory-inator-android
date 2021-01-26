@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rvImageSpace;
     private List<memory> mIcons;
     private Integer[] test_list;
+    private sizeBoard boardObject = new sizeBoard("HARD");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         rvImageSpace = findViewById(R.id.rvImagesSpace);
         test_list= new Integer[] { R.drawable.default_image};
         //create adapter for rv
-        gridIconAdapter imageAdapter = new gridIconAdapter(this, 8, test_list);
+        gridIconAdapter imageAdapter = new gridIconAdapter(this, boardObject.getNumberOfCards(), test_list);
 
 
 
@@ -41,6 +42,6 @@ public class MainActivity extends AppCompatActivity {
         //simply for optimization
         rvImageSpace.setHasFixedSize(true);
 
-        rvImageSpace.setLayoutManager(new GridLayoutManager(this, 3));
+        rvImageSpace.setLayoutManager(new GridLayoutManager(this, boardObject.getWidth()));
     }
 }
