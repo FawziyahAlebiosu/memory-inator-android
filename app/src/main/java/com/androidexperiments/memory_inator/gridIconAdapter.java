@@ -11,24 +11,22 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+
+import static com.androidexperiments.memory_inator.MainActivity.updateGameByFlip;
 //get list of items you want to display in rv
 //populate it into the rv using adapters
 
 public class gridIconAdapter  extends RecyclerView.Adapter<gridIconAdapter.ViewHolder>{
-   // public  List<memory> mIcons;
-    public List<Integer> images;
+    public List<icons> cards;
 
     private static final int margin = 10;
     public sizeBoard boardObject = new sizeBoard("EASY");
     public int numOfItems;
 
-    //get reference for all the views it will hold in here
-
-    //mIcons.add(R.drawable.default_image);
 
 
-    public gridIconAdapter(Context context,Integer num_items, List<Integer> images){
-        this.images = images;
+    public gridIconAdapter(Context context,Integer num_items, List<icons> images){
+        this.cards = images;
         this.numOfItems = num_items;
     }
 
@@ -39,6 +37,8 @@ public class gridIconAdapter  extends RecyclerView.Adapter<gridIconAdapter.ViewH
             ivIcons = itemView.findViewById(R.id.ivGridIcons);
         }
     }
+
+
 
     @NonNull
     @Override
@@ -65,17 +65,42 @@ public class gridIconAdapter  extends RecyclerView.Adapter<gridIconAdapter.ViewH
     }
 
     @Override
-    public void onBindViewHolder(@NonNull gridIconAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull gridIconAdapter.ViewHolder holder, final int position) {
             //memory current_item = mIcons.get(position);
 
             ImageView current_image = holder.ivIcons;
+          //  iconObj.setNameCard(cards.get(position));
+         //   if(iconObj.isFace)
+            Log.i("tag", String.valueOf(cards.get(position).isFaceUp()));
+            icons currentlyDisplayed = cards.get(position);
+            if(currentlyDisplayed.isFaceUp()){
+                current_image.setImageResource(icons.allIcons.get(position));
+            }
+            else{
+                current_image.setImageResource(R.drawable.ic_launcher_background);
+            }
 
-            current_image.setImageResource(images.get(position));
-            Log.i("haha", "worked");
+            if(cards.get(position).hasBeenMatched){
+               Log.i("TAG", "WORKKK");
+
+            }
+            else{
+                Log.i("TAG", "WORKKK");
+
+                //current_image.setImageAlpha((int) 1.0f);
+            }
+
+           // if(iconObj.)
+
+
+            //Log.i("haha", "worked");
             current_image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.i("tag", "worked");
+                    updateGameByFlip(position);
+
+                    Log.i("TAG", "/d card clicked");
+
                 }
             });
 

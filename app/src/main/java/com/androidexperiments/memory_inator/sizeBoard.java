@@ -8,6 +8,9 @@ public class sizeBoard {
     public String gameMode;
     private int width;
     private int numberOfCards;
+
+
+
 //unique number of icons is numcards/2
     public sizeBoard(String gameMode){
         this.gameMode = gameMode;

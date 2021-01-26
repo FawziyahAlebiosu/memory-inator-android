@@ -3,7 +3,9 @@ package com.androidexperiments.memory_inator;
 import java.util.List;
 
 public class memory {
-    private int movesMade;
+}
+
+   /* private int movesMade;
     private int currentPairs;
     private boolean gameOver;
     private int totalPairs;
@@ -57,3 +59,5 @@ public class memory {
 
 
 }
+
+    */
